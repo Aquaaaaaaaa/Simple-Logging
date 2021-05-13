@@ -1,6 +1,7 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
 const client = new Discord.Client()
 const config = require('./config.json')
+const channel = client.channels.cache.find(channel => channel.id === "ChannelIDforlogs")
 
 client.on('ready', () => {
     console.log('Ready! Logged in as: ' + client.user.tag);
@@ -12,7 +13,7 @@ client.on('roleCreate', (role) => {
     .addField('Role Name:', role, false)
     .setFooter('For More Info Check Discord Audit Log!')
     .setColor('YELLOW')
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(RoleCreateembed)
 });
 
@@ -25,7 +26,7 @@ client.on('messageDelete', (message) => {
     .setFooter('For More Info Check Discord Audit Log!')
     .setColor('YELLOW')
     .setImage(message.author.avatarURL({dynamic: true}))
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(messagedeleteembed)
 
 });
@@ -38,7 +39,7 @@ client.on('guildMemberAdd', (member) => {
     .setTimestamp()
     .setColor('YELLOW')
     .setImage(message.author.avatarURL({dynamic: true}))
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(joinembed)
 });
 
@@ -50,7 +51,7 @@ client.on('guildMemberRemove', (member) => {
     .setTimestamp()
     .setColor('YELLOW')
     .setImage(message.author.avatarURL({dynamic: true}))
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(leaveembed)
 });
 
@@ -63,7 +64,7 @@ client.on('guildBanAdd', (guild, user) => {
     .setTimestamp()
     .setColor('YELLOW')
     .setImage(message.author.avatarURL({dynamic: true}))
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(banembed)
 });
 
@@ -76,7 +77,7 @@ client.on('guildBanRemove', (guild, user) => {
     .setTimestamp()
     .setColor('YELLOW')
     .setImage(message.author.avatarURL({dynamic: true}))
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(banembed)
 });
 
@@ -86,7 +87,7 @@ client.on('roleDelete', (role) => {
     .addField('Role Name:', role, false)
     .setFooter('For More Info Check Discord Audit Log!')
     .setColor('YELLOW')
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(RoleCreateembed)
 });
 
@@ -96,7 +97,7 @@ client.on('emojiCreate', (emoji) => {
     .addField('Emoji Name:', emoji, false)
     .setFooter('For More Info Check Discord Audit Log!')
     .setColor('YELLOW')
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(emojicr)
 });
 
@@ -106,10 +107,42 @@ client.on('emojiDelete', (emoji) => {
     .addField('Emoji Name:', emoji, false)
     .setFooter('For More Info Check Discord Audit Log!')
     .setColor('YELLOW')
-    const channel = client.channels.cache.find(channel => channel.name === "rls")
+
     channel.send(emojide)
+});
+
+client.on('channelCreate', (channel) => {
+    let ccreate = new Discord.MessageEmbed()
+    .setTitle('Channel Create Event Triggered!')
+    .addField('Channel Name:', channel, false)
+    .setFooter('For More Info Check Discord Audit Log!')
+    .setColor('YELLOW')
+
+    channel.send(ccreate)
+});
+
+client.on('channelDelete', (channel) => {
+    let ccreate = new Discord.MessageEmbed()
+    .setTitle('Channel Delete  Event Triggered!')
+    .addField('Channel Name:', channel, false)
+    .setFooter('For More Info Check Discord Audit Log!')
+    .setColor('YELLOW')
+
+    channel.send(ccreate)
+});
+
+client.on('channelPinsUpdate', (channel, time) => {
+    let cpins = new Discord.MessageEmbed()
+    .setTitle('Message Pin  Event Triggered!')
+    .addField('Channel Name:', channel, false)
+    .addField('At:', time, false)
+    .setFooter('For More Info Check Discord Audit Log!')
+    .setColor('YELLOW')
+
+    channel.send(cpins)
 });
 
 
 
 client.login(config.token)
+
