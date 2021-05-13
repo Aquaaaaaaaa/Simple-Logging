@@ -1,2 +1,2 @@
-# Soon...🚀
-# Im still working on This!⚡
+# Released...🚀
+# Updates Soon!⚡
