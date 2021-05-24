@@ -1,3 +1,2 @@
 # Released...🚀
-Added almost every log⚡
-# npm i discord.js⚠️
+# Outdated / Better Version Released Check Repos!⚠️
